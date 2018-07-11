@@ -15,6 +15,8 @@ class MenuScene: SKScene {
     
     override func didMove(to view: SKView) {
         
+        anchorPoint = CGPoint(x: 0.5, y: 0.5)
+        
         backgroundColor = SKColor(red: 0, green: 0, blue: 0, alpha: 1)        // 设置label
         // 点击任意处开始
         let label = SKLabelNode(text: "Press anywhere to play again!");
