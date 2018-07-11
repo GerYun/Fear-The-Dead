@@ -18,12 +18,10 @@ class GameScene: SKScene {
     var goal: SKSpriteNode?    //Goal 有目标, 目的地，守门员 终点的意思，这里就是赢了
     var player: SKSpriteNode?
     var zombies: [SKSpriteNode] = []
-    
-    
-    // MARK: 生命周期
     // 最后点击的位置
     var lastTouch: CGPoint? = nil
     
+    // MARK: 生命周期
     override func didMove(to view: SKView) {
         
         // 设置物理世界的 conctat 代理
@@ -31,25 +29,36 @@ class GameScene: SKScene {
         
         // 设置初始化相机的位置
         updateCamera()
+        
+        // 设置player
+        player = childNode(withName: "player") as? SKSpriteNode
+        
+        listener = player
+        
+        // 设置僵尸
+        for child in children {
+            if child.name == "zombie" {
+                if let child = child as? SKSpriteNode {
+                    // 僵尸的叫声
+                    let audioNode = SKAudioNode(fileNamed: "fear_moan.wav")
+                    child.addChild(audioNode)
+                    zombies.append(child)
+                }
+            }
+        }
+        // 设置门
+        goal = childNode(withName: "goal") as? SKSpriteNode
+        
+        updateCamera()
     }
     
     // MARK: - 各种更新
-    // 在物理模拟后执行场景任何需要的更新
+    // 物理模拟后 每帧调用一次
     override func didSimulatePhysics() {
         if let _ = player {
             updatePlayer()
             updateZombies()
         }
-    }
-    
-    // 判断是否要更新玩家的位置
-    private func shouldMove(currentPosition: CGPoint, touchPosition: CGPoint) -> Bool {
-        // abs 返回绝对值
-        // 判断，点击的距离，是否大于玩家的宽度或者高度的一半
-        // 这里也是判断 点击 是否发生在 玩家身体外面，如果点击在了玩家身体上 就不移动了
-        let x = abs(currentPosition.x - touchPosition.x)
-        let y = abs(currentPosition.y - touchPosition.y)
-        return x > player!.size.width * 2 || y > player!.size.height * 0.5
     }
     
     // 朝最后一次触摸的方向来更新玩家的位置
@@ -65,7 +74,7 @@ class GameScene: SKScene {
         }
         
         // 计算移动的角度
-        let angle = atan2(player.position.y - touch.y, player.position.x - touch.x +  CGFloat.pi)
+        let angle = atan2(player.position.y - touch.y, player.position.x - touch.x) + CGFloat.pi
         // 创建旋转动作
         let rotateAction = SKAction.rotate(toAngle: angle + CGFloat.pi / 2, duration: 0)
         player.run(rotateAction)
@@ -84,6 +93,7 @@ class GameScene: SKScene {
         updateCamera()
     }
     
+    // 让相机时刻跟随主角移动
     func updateCamera() {
         if let camera = camera, let player = player {
             camera.position = player.position
@@ -176,6 +186,7 @@ extension GameScene: SKPhysicsContactDelegate {
 
 // MARK: 帮助函数
 extension GameScene {
+    
     private func gameOver(_ didWin: Bool) {
         
         print("- - - 游戏结束 - - -")
@@ -184,5 +195,15 @@ extension GameScene {
         menuScene.soundToPlay = didWin ? "fear_win.mp3" : "fear_lose.mp3"
         let transition = SKTransition.flipVertical(withDuration: 1.0)
         self.scene?.view?.presentScene(menuScene, transition: transition)
+    }
+    
+    // 判断是否要更新玩家的位置
+    private func shouldMove(currentPosition: CGPoint, touchPosition: CGPoint) -> Bool {
+        // abs 返回绝对值
+        // 判断，点击的距离，是否大于玩家的宽度或者高度的一半
+        // 这里也是判断 点击 是否发生在 玩家身体外面，如果点击在了玩家身体上 就不移动了
+        let x = abs(currentPosition.x - touchPosition.x)
+        let y = abs(currentPosition.y - touchPosition.y)
+        return x > player!.size.width * 2 || y > player!.size.height * 0.5
     }
 }

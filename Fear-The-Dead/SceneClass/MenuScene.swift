@@ -15,14 +15,12 @@ class MenuScene: SKScene {
     
     override func didMove(to view: SKView) {
         
-        backgroundColor = SKColor(red: 0, green: 0, blue: 0, alpha: 1)
-        
-        // 设置label
+        backgroundColor = SKColor(red: 0, green: 0, blue: 0, alpha: 1)        // 设置label
         // 点击任意处开始
         let label = SKLabelNode(text: "Press anywhere to play again!");
         label.fontName = "AvenirNext-Bold";
         label.fontSize = 55
-        label.position = CGPoint(x: frame.minX, y: frame.minY)
+        label.position = CGPoint.zero
         addChild(label)
         
         // 播放声音
@@ -41,5 +39,9 @@ class MenuScene: SKScene {
         let transition = SKTransition.flipVertical(withDuration: 1.0)
         gameScene.scaleMode = .aspectFill
         view?.presentScene(gameScene, transition: transition)
+    }
+    
+    deinit {
+        
     }
 }

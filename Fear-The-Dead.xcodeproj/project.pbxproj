@@ -20,6 +20,8 @@
 		7228D4EA20F4D1DF00D1B97B /* fear_bg.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 7228D4E520F4D1DF00D1B97B /* fear_bg.mp3 */; };
 		7228D4EB20F4D1DF00D1B97B /* fear_wall.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 7228D4E620F4D1DF00D1B97B /* fear_wall.mp3 */; };
 		7228D4F320F4D3F700D1B97B /* MenuScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7228D4F220F4D3F600D1B97B /* MenuScene.swift */; };
+		72C976EA20F6674F00752263 /* Wall.sks in Resources */ = {isa = PBXBuildFile; fileRef = 72C976E920F6674F00752263 /* Wall.sks */; };
+		72C976EC20F667FB00752263 /* Room.sks in Resources */ = {isa = PBXBuildFile; fileRef = 72C976EB20F667FB00752263 /* Room.sks */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -38,6 +40,8 @@
 		7228D4E520F4D1DF00D1B97B /* fear_bg.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = fear_bg.mp3; sourceTree = "<group>"; };
 		7228D4E620F4D1DF00D1B97B /* fear_wall.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = fear_wall.mp3; sourceTree = "<group>"; };
 		7228D4F220F4D3F600D1B97B /* MenuScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuScene.swift; sourceTree = "<group>"; };
+		72C976E920F6674F00752263 /* Wall.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = Wall.sks; sourceTree = "<group>"; };
+		72C976EB20F667FB00752263 /* Room.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = Room.sks; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -105,6 +109,8 @@
 			isa = PBXGroup;
 			children = (
 				7228D4CA20F4D15C00D1B97B /* GameScene.sks */,
+				72C976E920F6674F00752263 /* Wall.sks */,
+				72C976EB20F667FB00752263 /* Room.sks */,
 			);
 			path = Scenes;
 			sourceTree = "<group>";
@@ -205,6 +211,8 @@
 				7228D4D420F4D15C00D1B97B /* Main.storyboard in Resources */,
 				7228D4E720F4D1DF00D1B97B /* fear_moan.wav in Resources */,
 				7228D4CB20F4D15C00D1B97B /* GameScene.sks in Resources */,
+				72C976EC20F667FB00752263 /* Room.sks in Resources */,
+				72C976EA20F6674F00752263 /* Wall.sks in Resources */,
 				7228D4EA20F4D1DF00D1B97B /* fear_bg.mp3 in Resources */,
 				7228D4EB20F4D1DF00D1B97B /* fear_wall.mp3 in Resources */,
 				7228D4E820F4D1DF00D1B97B /* fear_lose.mp3 in Resources */,
