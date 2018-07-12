@@ -85,7 +85,7 @@ class GameScene: SKScene {
         let velocityY = playerSpeed * sin(angle)
         
         // 包含二维向量的结构体，以米/秒为单位。
-        // 设置这个 人物就会行走
+        // 设置这个人物就会行走,就是给定精灵一个移动的速率，当不为0就开始自动行走了
         let newVelocity = CGVector(dx: velocotyX, dy: velocityY)
         player.physicsBody?.velocity = newVelocity
         
